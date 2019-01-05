@@ -22,7 +22,7 @@ export class ToolbarComponent implements OnInit {
     this.auth.appUser$
     .subscribe(appUser => {
      this.appUser = appUser;
-      //console.log(appUser.name);
+    
     });
   }
 
