@@ -1,0 +1,55 @@
+<section class="container" >
+  <div  class="log-btw-elm" fxFlex>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <mat-form-field>
+        <input type="text" [(ngModel)]="title" name="title" matInput placeholder="Title">
+      </mat-form-field>  
+      <mat-form-field>
+        <input type="number" [(ngModel)]="price" name="price" matInput placeholder="Price">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" [(ngModel)]="quantity" name="quantity" matInput placeholder="Quantity">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="url" [(ngModel)]="url" name="url" matInput placeholder="image url">
+      </mat-form-field>  
+      <mat-form-field>
+        <mat-select ngModel name="category" placeholder="Category">
+          <mat-option *ngFor="let c of categories$ | async" [value]="c">{{c}}</mat-option>
+        </mat-select>
+      </mat-form-field>     
+      <button mat-raised-button type="submit" color="primary" [disabled]="f.invalid">Save</button>       
+    </form>
+  </div>
+  
+
+  <div class="log-btw-elm" fxFlex >
+    <mat-card class="example-card">
+      <div fxLayoutAlign="center center" class="img-cls">
+        <div [ngStyle]="{'background-image': 'url('+ url +')'}" class="mycard">         
+        </div> 
+      </div>               
+      <mat-card-content class="prd-cont">
+        <div class="prd-tit">
+          <b>{{title}}</b>
+        </div>
+       
+          <div class="prd-prc">         
+              <b>{{price | currency: 'INR': 'symbol': '1.0-0':'en-IN'}}</b>          
+          </div>  
+   
+      </mat-card-content>
+      <div class="prd-act" fxLayoutAlign="center">        
+        <button 
+        mat-button>
+        <b>
+          <span>Quantity: </span>
+          <span [ngStyle]="{'color':'red'}">{{quantity | number: '': 'en-IN'}}</span>  
+        </b>          
+        </button>       
+      </div>
+      
+    </mat-card>
+  </div>
+  
+</section>

@@ -1,0 +1,115 @@
+<mat-toolbar color="accent">
+  <!-- 1st half-->
+  <!-- 
+fxFlex : makes the divs to distribute space equally
+fxLayout: within div elements should be in row or column. by default its row. 
+fxLayoutAlign : makes the div element to align by specified. 
+                these are different values - none,start (default),center,end,space-around,space-between,space-evenly
+fxLayoutGap: elements gap
+  -->
+
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <div fxFlex fxLayout fxLayoutAlign="start center">
+    <ul fxLayout fxLayoutGap="25px">
+      <li>
+          <a routerLink="/">LOGO</a>
+      </li>
+    </ul>    
+  </div> 
+
+  <div fxFlex class="tmenus">
+    <button mat-button [matMenuTriggerFor]="menu1">Sports  <mat-icon>arrow_drop_down</mat-icon></button>
+    <mat-menu #menu1="matMenu" xPosition="before">
+      <button mat-menu-item>Crciket Bat</button>
+      <button mat-menu-item>All Ball</button>
+    </mat-menu>
+  </div>
+
+  <div fxFlex class="tmenus">
+    <button mat-button [matMenuTriggerFor]="menu2">Electronics  <mat-icon>arrow_drop_down</mat-icon></button>
+    <mat-menu #menu2="matMenu" xPosition="before" >
+      <button mat-menu-item>Mobile</button>
+      <button mat-menu-item>Laptop</button>
+      <button mat-menu-item>TV</button>
+    </mat-menu>
+  </div>
+
+  <div fxFlex class="tmenus">
+    <button mat-button [matMenuTriggerFor]="menu3"></button>
+    <mat-menu #menu3="matMenu" xPosition="before">      
+    </mat-menu>
+  </div>
+  <div fxFlex class="tmenus">
+    <button mat-button [matMenuTriggerFor]="menu4"></button>
+    <mat-menu #menu4="matMenu" xPosition="before">     
+    </mat-menu>
+  </div>
+
+<!-- 2nd half-->
+
+  <div fxFlex fxLayout fxLayoutAlign="end center" fxHide.xs>
+    <ul fxLayoutAlign="center center" fxLayout fxLayoutGap="35px">
+      <ng-template #anonymsUser>
+          <li>
+            <a routerLink="/signup">Signup</a>
+          </li>
+          <li>
+            <a routerLink="/login">Login</a>
+          </li>
+      </ng-template>
+      <li *ngIf="appUser; else anonymsUser">
+        <button class="user-name" mat-button [matMenuTriggerFor]="menu">{{appUser.name}}
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        
+        <mat-menu #menu="matMenu" xPosition="after">
+          <button routerLink="products/new" mat-menu-item>Add Product</button>
+          <button mat-menu-item>All Products</button>
+          <button routerLink="products/new" mat-menu-item>Manage Product</button>
+          <button (click)="logout()" mat-menu-item>Sign Out</button>          
+        </mat-menu>      
+      </li>      
+      <li>
+        <a fxLayoutAlign="center center" routerLink="cart">
+          <!-- <span  class="nav-caption">Kart</span>          -->
+          <span *ngIf="cart">           
+            <mat-icon matBadge="{{cart.totalItemsCount}}">shopping_cart</mat-icon>
+          </span>
+        </a>
+      </li>
+    </ul>      
+  </div>  
+</mat-toolbar>
+<!--
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+      <button mat-icon-button >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <a routerLink="/">LOGO</a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+        <li>
+          <a routerLink="/signup">Signup</a>
+        </li>
+        <li>
+          <a routerLink="/login">Login</a>
+        </li>
+        <li>
+          <a routerLink="/training">Training</a>
+        </li>
+        <li>
+          <a>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar>
+  -->

@@ -1,0 +1,23 @@
+a {
+    text-decoration: none;
+    color: white;
+  }
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+li{
+    list-style: none;
+}
+
+.user-name{
+  font-size: 1em;
+}
+.nav-caption{
+  padding: 10px ;
+}
+.tmenus> button{
+  font-size: 1.2rem;
+  color:beige;
+}

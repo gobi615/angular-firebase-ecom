@@ -1,0 +1,36 @@
+<section class="container">
+   <mat-grid-list  cols={{prdCol}} rowHeight="400px" class="in-container">
+        <mat-grid-tile *ngFor = "let product of products$ | async" class="prd-card">
+                <!-- <b>{{product | json}}</b>  -->
+            <!-- <div gdAreas fxLayoutAlign="center" fxLayoutGap="30px" > -->
+                <mat-card > 
+                    <div fxLayoutAlign="center center" class="out-img-div">
+                        <!-- <img src="{{product.url}}" alt=""> -->
+                        <div class="img-div" [ngStyle]="{'background-image':'url('+ product.url+')'}">                            
+                        </div> 
+                    </div>
+                    <mat-card-content class="prd-cont">
+                        <div class="prd-tit">
+                            <b>{{product.title}}</b> 
+                        </div>    
+                        <!-- {{product.key}}      -->
+                        <div class="prd-prc">         
+                            <b>{{product.price | currency: 'INR': 'symbol': '1.0-0':'en-IN'}}</b>          
+                        </div>               
+                    </mat-card-content>
+                    <div class="prd-act" fxLayoutAlign="space-between center">
+                        <button (click)="addOne(product)" mat-button>
+                            <mat-icon>add_shopping_cart</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="cart$ | async as cart">
+                            {{cart.getQuantity(product)}}
+                        </button>
+                        <button (click)="removeOne(product)" mat-button>
+                            <mat-icon>remove_shopping_cart</mat-icon>
+                        </button>
+                    </div>      
+                </mat-card>               
+            <!-- </div> -->
+        </mat-grid-tile>
+    </mat-grid-list>
+</section>

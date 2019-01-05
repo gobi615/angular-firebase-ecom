@@ -1,0 +1,12 @@
+table{
+    min-width: 75%;
+    margin : 0 auto;
+}
+.table-cont{
+    /* border : 1px solid red; */
+    /* height : 600px; */
+}
+th{
+    font-size: 1.1rem;
+    font-weight: 900;
+}

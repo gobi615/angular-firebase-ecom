@@ -1,0 +1,15 @@
+<mat-sidenav-container *ngIf="cart$ | async as cart">
+    <mat-sidenav #sidenav position="start" mode="over">
+        <app-sidenav [cart]="cart" (closeSideNav)="sidenav.close()"></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>        
+        <app-toolbar [cart]="cart" (sidenavToggle)="sidenav.toggle()"></app-toolbar>
+        
+        <main>
+            <router-outlet></router-outlet>
+        </main>         
+    </mat-sidenav-content>   
+</mat-sidenav-container>
+
+
+

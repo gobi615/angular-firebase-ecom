@@ -1,0 +1,15 @@
+a {
+    text-decoration: none;
+    color: black;
+  }
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+li{
+    list-style: none;
+}
+.nav-caption{
+  padding: 10px ;
+}

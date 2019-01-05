@@ -1,0 +1,67 @@
+*{
+    /* border: 1px solid red; */
+}
+.in-container{
+    width: 100%;
+    height: auto;
+}
+mat-grid-tile{
+    /* padding: 10px; */
+    margin: 10px;
+    border: 1px solid red
+}
+mat-card{
+    width: 250px;
+    height: 100%;
+    border: 2px solid blue;
+}
+.out-img-div{
+    width: 100%;
+    height: 70%;
+    padding: 1%;
+    box-sizing: border-box;
+    padding: 0 0 4% 0; 
+/* border: 1px solid red;    */
+}
+.img-div{  
+    width: 100%;
+    height: 100%;    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.prd-cont{
+    margin: 0;
+    width: 100%;
+    height: 20%;
+    box-sizing: border-box;
+}
+.prd-tit{
+    font-size: 1rem;
+    width: 100%;
+    height: 60%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+   
+    /* font-weight: 400; */
+    /* overflow-wrap: break-word; */
+    /* word-break: break-all; */
+    /* word-wrap: break-word; */
+    /* box-sizing: border-box; */
+}
+.prd-prc{
+    width: 100%;
+    height: 40%;
+    /* box-sizing: border-box; */
+}
+.prd-act{
+    width: 100%;
+    height: 10%;
+    box-sizing: border-box;
+    background-color: bisque;
+}
+ 
+  /* .prd-card{
+      width: 250px;
+  } */

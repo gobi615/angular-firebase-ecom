@@ -1,0 +1,10 @@
+<section class="main-cont">
+  <mat-form-field fxLayout fxLayoutAlign="end">
+      <mat-select placeholder="Sort Product By">
+        <mat-option *ngFor="let food of foods" [value]="food.value">       
+        </mat-option>
+      </mat-select>
+  </mat-form-field>    
+  <app-product></app-product>
+</section>
+

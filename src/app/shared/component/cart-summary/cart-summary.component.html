@@ -1,0 +1,42 @@
+<div class="container">
+  <form fxFlex fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-form-field>
+      <input type="text" placeholder="Address Line 1" ngModel name="adr1" matInput required #adr1Input="ngModel">
+      <mat-error *ngIf="adr1Input.hasError('required')">Address lin1 1 is mandatory</mat-error>
+      <!-- <mat-error *ngIf="!adr1Input.hasError('required')">Enter a valid email</mat-error> -->
+    </mat-form-field>
+    <mat-form-field hintLabel="">
+      <input type="text" placeholder="Address Line 2" ngModel name="adr2" matInput #adr2Input="ngModel">
+      <!-- <mat-error>Has to be at least 6 characters long.</mat-error> -->
+      <!-- <mat-hint align="end">{{ pass1Input.value?.length }} / 6</mat-hint> -->
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" placeholder="City" ngModel name="city" matInput required #cityInput="ngModel">     
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" placeholder="PIN" ngModel name="pin" matInput required #pinInput="ngModel">     
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" placeholder="Mobile" ngModel name="ph" matInput required #phInput="ngModel">     
+    </mat-form-field>     
+    <!-- <button mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>   -->
+  </form>
+  <div fxFlex>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title></mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>        
+      <mat-card-content>
+        <p *ngIf = "cart">
+          <b>SubTotal( {{cart.itemsCount}} Items ) : {{cart.totalPrice}} </b>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="placeOrder(f.value)" mat-raised-button color="accent">Proceed To Payment</button>
+        <!-- <button mat-button>SHARE</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+mat-form-field{
+    width:100%;
+}
+.example-card{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 16px 26px;
+}
+.img-cls{
+  width: 100%;
+  height: 70%;
+  padding: 1%;
+  box-sizing: border-box;
+  padding: 0 0 4% 0; 
+  /* border: 1px solid red;    */
+}
+.mycard{  
+  width: 100%;
+  height: 100%;    
+  /* margin: auto auto; */
+  /* box-sizing: border-box; */
+  
+  /* background-image: url("https://rukminim1.flixcart.com/image/832/832/jmgmmq80/mobile/4/b/t/vivo-v11-pd1813f-ex-vivo-1806-original-imaf9cy8fzaugf9k.jpeg?q=70"); */
+  /* background-image: url("https://rukminim1.flixcart.com/image/832/832/jlsc58w0/television/s/r/r/lg-oled55c8pta-original-imaf8u8qcndhfprj.jpeg?q=70"); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.log-btw-elm{
+  margin: 20px 10px 0 10px;
+}
+
+.prd-cont{   
+  /* vertical-align: middle; */
+  height: 20%;
+  box-sizing: border-box;
+  /* border: 1px solid red;   */
+  margin: 0; 
+  /* display: table; */
+}
+.prd-act{
+  height: 10%;
+  /* border: 1px solid red;     */
+}
+p{
+  margin: 0;
+}
+.prd-tit{
+  /* display: table-row; */
+  /* text-align: center; */
+  /* vertical-align: middle; */
+  color: blueviolet;
+  box-sizing: border-box;
+  height: 60%;
+  /* border: 1px solid red;   */
+}
+.prd-prc{
+  color:crimson;
+  /* display: table-row; */
+  /* vertical-align: middle; */
+  font-size: 1.15em;
+  box-sizing: border-box;
+  height: 40%;
+  /* border: 1px solid red;  */
+}

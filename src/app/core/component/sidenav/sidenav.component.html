@@ -1,0 +1,16 @@
+
+<mat-nav-list fxLayoutGap="20px">
+  <a mat-list-item routerLink="/signup" (click)="onClose()">
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Signup</span>
+  </a>
+  <a mat-list-item routerLink="/login" (click)="onClose()">
+    <mat-icon>input</mat-icon>
+    <span class="nav-caption">Login</span>
+  </a>
+  <a mat-list-item routerLink="cart" (click)="onClose()">
+    <mat-icon matBadge="{{cart.totalItemsCount}}">shopping_cart</mat-icon>
+    <span class="nav-caption">Kart</span>
+  </a>
+</mat-nav-list>
+
