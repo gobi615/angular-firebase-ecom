@@ -1,6 +1,6 @@
 <section class="container">
    <mat-grid-list  cols={{prdCol}} rowHeight="400px" class="in-container">
-        <mat-grid-tile *ngFor = "let product of products$ | async" class="prd-card">
+        <mat-grid-tile *ngFor = "let product of products" class="prd-card">
                 <!-- <b>{{product | json}}</b>  -->
             <!-- <div gdAreas fxLayoutAlign="center" fxLayoutGap="30px" > -->
                 <mat-card > 
@@ -29,8 +29,8 @@
                             <mat-icon>remove_shopping_cart</mat-icon>
                         </button>
                     </div>      
-                </mat-card>               
-            <!-- </div> -->
+                </mat-card>     
+           
         </mat-grid-tile>
     </mat-grid-list>
 </section>

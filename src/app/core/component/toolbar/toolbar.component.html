@@ -25,17 +25,17 @@ fxLayoutGap: elements gap
   <div fxFlex class="tmenus">
     <button mat-button [matMenuTriggerFor]="menu1">Sports  <mat-icon>arrow_drop_down</mat-icon></button>
     <mat-menu #menu1="matMenu" xPosition="before">
-      <button mat-menu-item>Crciket Bat</button>
-      <button mat-menu-item>All Ball</button>
+      <button mat-menu-item [routerLink]="['/allprd']" [queryParams]="{ category: 'Bat'}">Crciket Bat</button>
+      <button mat-menu-item [routerLink]="['/allprd']" [queryParams]="{ category: 'Ball'}">Ball</button>
     </mat-menu>
   </div>
 
   <div fxFlex class="tmenus">
     <button mat-button [matMenuTriggerFor]="menu2">Electronics  <mat-icon>arrow_drop_down</mat-icon></button>
     <mat-menu #menu2="matMenu" xPosition="before" >
-      <button mat-menu-item>Mobile</button>
-      <button mat-menu-item>Laptop</button>
-      <button mat-menu-item>TV</button>
+      <button mat-menu-item [routerLink]="['/allprd']" [queryParams]="{ category: 'mobile'}">Mobile</button>
+      <button mat-menu-item [routerLink]="['/allprd']" [queryParams]="{ category: 'laptop'}">Laptop</button>
+      <button mat-menu-item [routerLink]="['/allprd']" [queryParams]="{ category: 'tv'}">TV</button>
     </mat-menu>
   </div>
 

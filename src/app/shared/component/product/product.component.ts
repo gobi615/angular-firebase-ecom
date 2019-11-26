@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { ProductService } from '../../service/product.service';
 import { take } from 'rxjs/operators';
 import { Product } from '../../models/product';
@@ -14,20 +14,19 @@ import { ShoppingCart } from '../../models/shopping-cart';
 })
 export class ProductComponent implements OnInit {
 
-  products$;
+  @Input('products') products;
   count =0;
-  product ;
+ 
   public innerWidth: any;
   public prdCol;
   cart$ : Observable<ShoppingCart>;
   // let kart : Map<number, Product[]> = new Map<number, Product[]>();
 
-  constructor(private prodService : ProductService, private cartService:ShoppingCartService) {
+  constructor(private cartService:ShoppingCartService) {
            this.initCart();
    }
 
- async ngOnInit() {  
-    this.products$ = this.prodService.getAll(); 
+ ngOnInit() {      
     this.innerWidth = window.innerWidth;  
     this.getprdCol();
   }

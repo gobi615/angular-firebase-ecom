@@ -7,13 +7,15 @@ import { MaterialModule } from '../material-module/material-module.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { ProductComponent } from '../shared/component/product/product.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     WelcomeComponent,
     ToolbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ProductComponent } from '../shared/component/product/product.component'
   ],
   exports: [
     ToolbarComponent,
-    SidenavComponent    
+    SidenavComponent,
+    FooterComponent    
   ]
 })
 export class CoreModule { }

@@ -1,10 +1,9 @@
 <section class="main-cont">
   <mat-form-field fxLayout fxLayoutAlign="end">
       <mat-select placeholder="Sort Product By">
-        <mat-option *ngFor="let food of foods" [value]="food.value">       
+        <mat-option [routerLink]=""  [queryParams]="{ sort: sid}" *ngFor="let sid of sortId" [value]="sid">{{sid}}     
         </mat-option>
       </mat-select>
   </mat-form-field>    
-  <app-product></app-product>
+  <app-product [products]="filterdProduct"></app-product>
 </section>
-
