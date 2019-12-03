@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   login(type){
     this.auth.login(type);
+    
   }
 
 }
