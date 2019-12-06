@@ -29,17 +29,17 @@ async ngOnInit(){
     this.cartId = cart.key
     console.log(this.cartId)
   })).subscribe(()=>{
-    this.auth.user$.subscribe(user => {
-      if(!user)
-        return;
-      this.userService.save(user,this.cartId); 
-      let returnUrl = localStorage.getItem('returnUrl');
-      // console.log(returnUrl);console.log('app component');
-      if (!returnUrl) 
-        return; 
-      localStorage.removeItem('returnUrl');
-      this.router.navigateByUrl(returnUrl);     
-    })
+    // this.auth.user$.subscribe(user => {
+    //   if(!user)
+    //     return;
+    //   this.userService.save(user,this.cartId); 
+    //   let returnUrl = localStorage.getItem('returnUrl');
+    //   // console.log(returnUrl);console.log('app component');
+    //   if (!returnUrl) 
+    //     return; 
+    //   localStorage.removeItem('returnUrl');
+    //   this.router.navigateByUrl(returnUrl);     
+    // })
   });
   // console.log(this.cartId);
 

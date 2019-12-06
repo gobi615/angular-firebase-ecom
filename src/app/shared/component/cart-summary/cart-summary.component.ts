@@ -30,7 +30,7 @@ export class CartSummaryComponent implements OnInit {
     console.log(this.cart);  
     let order = new Order(this.userId, shipping, this.cart);
     let result = this.orderService.placeOrder(order);
-    this.router.navigate(['/orderpass', result]);
+    this.router.navigate(['/orderpass']);
     
   }
 

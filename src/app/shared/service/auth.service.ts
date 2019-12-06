@@ -22,6 +22,18 @@ export class AuthService {
     if(type == 'gauth'){
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     }
+    else if(type == 'fauth'){             
+          let provider = new firebase.auth.FacebookAuthProvider();
+          this.afAuth.auth
+          .signInWithPopup(provider) ;
+          // .then(res => {
+          //   resolve(res);
+          // }, err => {
+          //   console.log(err);
+          //   reject(err);
+          // }) ;
+      
+    }    
    // this.userService.save(this.user$);
   }
 

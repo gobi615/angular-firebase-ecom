@@ -4,6 +4,7 @@ import { ShoppingCartService } from './shopping-cart.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Order } from '../models/order';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class OrderService {
   userSubscription: Subscription;
   userId: string;
   
-  constructor(private db : AngularFireDatabase, private cartService : ShoppingCartService, private authService: AuthService,) {
+  constructor(private db : AngularFireDatabase, private cartService : ShoppingCartService, private authService: AuthService,private router:Router) {
 
    }
 
@@ -26,7 +27,14 @@ export class OrderService {
   async placeOrder(order){
     let result = await this.db.list('/orders').push(order);
     this.cartService.clearCart();
-    return result;
+    // this.router.navigate(['/']);
+    location.reload();
+    // setTimeout(function(){
+    //   location.reload();
+    // }, 1000);
+   
+
+    return 'Order Placed';
   }
 
   getOrders() { 

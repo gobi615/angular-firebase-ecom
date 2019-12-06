@@ -20,6 +20,7 @@ import { OrderSucessComponent } from './component/order-sucess/order-sucess.comp
 import { OrderService } from './service/order.service';
 import { CartSummaryComponent } from './component/cart-summary/cart-summary.component';
 import { ProductSortingComponent } from './component/product-sorting/product-sorting.component';
+import { AuthGuardService } from './service/auth-guard.service';
 
 @NgModule({
   declarations: [ProductComponent, CartComponent, CheckoutComponent, PaymentComponent, OrderSucessComponent, CartSummaryComponent, ProductSortingComponent],
@@ -33,8 +34,8 @@ import { ProductSortingComponent } from './component/product-sorting/product-sor
     RouterModule.forChild([
       {path:'allprd', component: ProductSortingComponent},
       {path:'cart', component: CartComponent},
-      {path:'checkout', component: CheckoutComponent},
-      {path:'orderpass', component: OrderSucessComponent}
+      {path:'checkout', component: CheckoutComponent, canActivate: [AuthGuardService]},
+      {path:'orderpass', component: OrderSucessComponent, canActivate: [AuthGuardService]}
     ])
   ],
   providers: [

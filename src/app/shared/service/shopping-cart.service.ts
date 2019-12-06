@@ -25,6 +25,10 @@ export class ShoppingCartService {
   async getCart(){
     let cartId = await this.getOrCreateCart();
     console.log(cartId);
+    return this.getShopCart(cartId);
+  }
+
+  async getShopCart(cartId : string){
     let cart$ = this.db.object<any>('/shopping-cart/'+cartId).snapshotChanges();
     return cart$.pipe(map( cart => {
       if(cart == null){
@@ -32,7 +36,10 @@ export class ShoppingCartService {
         location.reload();                //reload the page
       }
       // console.log(cart.payload.val().items);
-     return new ShoppingCart(cart.payload.val().items,cart.payload.key); 
+      let shopKart = new ShoppingCart(cart.payload.val().items,cart.payload.key);
+      // localStorage.setItem('kart', JSON.stringify(shopKart));
+      // console.log('shopping cart : '+JSON.stringify(shopKart));
+     return shopKart; 
     }));
   }
   
@@ -58,30 +65,48 @@ export class ShoppingCartService {
   }
 
   async getOrCreateCart(){
+
     // need to create logic like if he login his cart id is stored and get from db. If he is not logged in his anonyms cart is stored in local.
-    let cartId = localStorage.getItem('cartId');    
+    let cartId = localStorage.getItem('cartId'); 
+    console.log('cart: '+cartId);   
     if(!cartId){
-      // cartId =  this.getFromUser()
+      cartId =  this.getFromUser()
       // console.log(cartId);
-      // if(cartId){ //get cartId from fb in user object. 
-      //   return cartId;
-      // }    
+      if(cartId){ //get cartId from fb in user object. 
+        return cartId;
+      }  
+      
       let result = await this.createCart();
-      console.log('cart: '+result);
+      console.log('cart null: '+result);
       localStorage.setItem('cartId',result.key);
+      this.saveCartToUser(result.key);
       return result.key;
     }
     return cartId;   
   }
+  saveCartToUser(cartId: any) {
+    this.authService.user$.subscribe(user => {
+      if(user){
+        console.log('cart id is saving user');
+        this.userService.save(user,cartId);
+      }         
+    });
+  }
   
-//  getFromUser() {    
-//     this.authService.user$.subscribe(user => {
-//       this.appUser = this.userService.get(user.uid);
-//       console.log(this.appUser);
-      
-//     });
-  
-//   }
+ getFromUser() : string { 
+   let cartId : string;   
+    this.authService.user$.subscribe(user => {
+      this.appUser = this.userService.get(user.uid);
+      this.appUser().subscribe((appuser)=>{
+         cartId = appuser.cart;
+        console.log(appuser.cart);
+        console.log(appuser.name);
+      });
+         
+    });
+    
+    return cartId;
+  }
 
   createCart(){
     return this.db.list('/shopping-cart').push({
@@ -94,9 +119,31 @@ export class ShoppingCartService {
   }
 
   async clearCart() {
-    let cartId = await this.getOrCreateCart();
+    let cartId = await this.getOrCreateCart();    
     this.db.object('/shopping-cart/' + cartId + '/items').remove();    
+    localStorage.removeItem('cartId');
   }
 
+  async mergeCart(){
+    let localCart = localStorage.getItem('cartId');
+    let dbCart =this. getFromUser();
+    if(localCart != dbCart){
+      console.log('executing 1');
+      let shopCart = await this.getShopCart(dbCart);
+      shopCart.subscribe((cart)=>{
+        cart.items.forEach((item)=>{
+          console.log('executing 2');
+          this.updateCart({title : item.title, price : item.price, url : item.imageUrl, key : item.$key, category : ''}, item.quantity);
+        });
+      }) ;
+      this.saveCartToUser(localCart);
+    }
+   
+  }
+    //merge
+
+    //save local storage and db
+    //reload to refelct
+  
 
 }
