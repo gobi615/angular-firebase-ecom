@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(type){
-    this.auth.login(type);
+  async login(type){
+   await this.auth.login(type);
     this.auth.appUser$.subscribe(user => {
       if(user){
         this.router.navigateByUrl('/allprd');

@@ -35,7 +35,7 @@ export class ShoppingCartService {
         localStorage.removeItem("cartId");
         location.reload();                //reload the page
       }
-      // console.log(cart.payload.val().items);
+      console.log('shope cartttttt');
       let shopKart = new ShoppingCart(cart.payload.val().items,cart.payload.key);
       // localStorage.setItem('kart', JSON.stringify(shopKart));
       // console.log('shopping cart : '+JSON.stringify(shopKart));
@@ -70,7 +70,7 @@ export class ShoppingCartService {
     let cartId = localStorage.getItem('cartId'); 
     console.log('cart: '+cartId);   
     if(!cartId){
-      cartId =  this.getFromUser()
+      cartId =  await this.getFromUser()
       // console.log(cartId);
       if(cartId){ //get cartId from fb in user object. 
         return cartId;
@@ -93,20 +93,7 @@ export class ShoppingCartService {
     });
   }
   
- getFromUser() : string { 
-   let cartId : string;   
-    this.authService.user$.subscribe(user => {
-      this.appUser = this.userService.get(user.uid);
-      this.appUser().subscribe((appuser)=>{
-         cartId = appuser.cart;
-        console.log(appuser.cart);
-        console.log(appuser.name);
-      });
-         
-    });
-    
-    return cartId;
-  }
+ 
 
   createCart(){
     return this.db.list('/shopping-cart').push({
@@ -124,21 +111,40 @@ export class ShoppingCartService {
     localStorage.removeItem('cartId');
   }
 
-  async mergeCart(){
-    let localCart = localStorage.getItem('cartId');
-    let dbCart =this. getFromUser();
-    if(localCart != dbCart){
-      console.log('executing 1');
-      let shopCart = await this.getShopCart(dbCart);
-      shopCart.subscribe((cart)=>{
-        cart.items.forEach((item)=>{
-          console.log('executing 2');
-          this.updateCart({title : item.title, price : item.price, url : item.imageUrl, key : item.$key, category : ''}, item.quantity);
+  async getFromUser() {   
+    let cartId : string;   
+    this.authService.user$.pipe(take(1)).subscribe(user => {
+      console.log('user 1');
+      if(user){
+        this.appUser = this.userService.get(user.uid);        
+        this.appUser.valueChanges().pipe(take(1)).subscribe(async (appuser) => {
+          console.log('user 2');
+          cartId = appuser.cart;
+          let userDbCart = cartId ;
+          let localCart = localStorage.getItem('cartId');
+          if(localCart != userDbCart){
+            console.log('executing 1');
+            let shopCart = await this.getShopCart(userDbCart);
+            console.log('executing 2'+JSON.stringify(shopCart));
+            shopCart.pipe(take(1)).subscribe((cart)=>{
+              console.log('executing 3');
+              cart.items.forEach((item)=>{
+                console.log('executing 4');
+                this.updateCart({title : item.title, price : item.price, url : item.imageUrl, key : item.$key, category : ''}, item.quantity);
+              });
+              this.saveCartToUser(localCart);
+            }) ;            
+          }          
         });
-      }) ;
-      this.saveCartToUser(localCart);
-    }
-   
+      }
+      
+    });     
+    return cartId;
+   }
+
+  async mergeCart(){    
+    let dbCart = await this.getFromUser();
+    console.log('user cart : '+dbCart );   
   }
     //merge
 

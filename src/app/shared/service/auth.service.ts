@@ -17,15 +17,16 @@ export class AuthService {
     this.user$ = this.afAuth.authState;     
   }
 
-  login(type){
+  async login(type){
     console.log(type);
+    let user;
     if(type == 'gauth'){
-      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      let provider = new firebase.auth.GoogleAuthProvider() ; 
+      user = await this.afAuth.auth.signInWithPopup(provider);
     }
     else if(type == 'fauth'){             
-          let provider = new firebase.auth.FacebookAuthProvider();
-          this.afAuth.auth
-          .signInWithPopup(provider) ;
+      let provider = new firebase.auth.FacebookAuthProvider();
+      user = await this.afAuth.auth.signInWithPopup(provider) ;
           // .then(res => {
           //   resolve(res);
           // }, err => {
@@ -34,6 +35,7 @@ export class AuthService {
           // }) ;
       
     }    
+    return user;
    // this.userService.save(this.user$);
   }
 

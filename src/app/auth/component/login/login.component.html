@@ -4,15 +4,15 @@
     <mat-card-title></mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
   </mat-card-header>
-  <!-- <mat-card-content>
+  <mat-card-content>
    <p>
-     Already registered!
+     
    </p>
-  </mat-card-content> -->
+  </mat-card-content>
   <mat-card-actions fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-    <button (click)="login(b1._elementRef.nativeElement.name)" name="gauth" #b1 mat-raised-button color="primary">Login With Google</button>
-    <button (click)="login(b2._elementRef.nativeElement.name)" #b2 name="eauth" mat-raised-button color="primary">Login With Email</button>
-    <button (click)="login(b3._elementRef.nativeElement.name)" #b3 name="fauth" mat-raised-button color="primary">Login With Facebook</button>
-    <button (click)="login(b4._elementRef.nativeElement.name)" #b4 name="pauth" mat-raised-button color="primary">Login With Phone</button>
+    <button type="button" (click)="login(b1._elementRef.nativeElement.name)" name="gauth" #b1 mat-raised-button color="primary">Login With Google</button>
+    <button type="button" (click)="login(b2._elementRef.nativeElement.name)" #b2 name="eauth" mat-raised-button color="primary">Login With Email</button>
+    <button type="button" (click)="login(b3._elementRef.nativeElement.name)" #b3 name="fauth" mat-raised-button color="primary">Login With Facebook</button>
+    <button type="button" (click)="login(b4._elementRef.nativeElement.name)" #b4 name="pauth" mat-raised-button color="primary">Login With Phone</button>
   </mat-card-actions>
 </mat-card>

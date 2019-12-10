@@ -28,7 +28,8 @@ async ngOnInit(){
   this.cart$.pipe(map<any,any>(cart => {
     this.cartId = cart.key
     console.log(this.cartId)
-  })).subscribe(()=>{
+  }))
+  // .subscribe(()=>{
     // this.auth.user$.subscribe(user => {
     //   if(!user)
     //     return;
@@ -40,7 +41,7 @@ async ngOnInit(){
     //   localStorage.removeItem('returnUrl');
     //   this.router.navigateByUrl(returnUrl);     
     // })
-  });
+  // });
   // console.log(this.cartId);
 
 }
