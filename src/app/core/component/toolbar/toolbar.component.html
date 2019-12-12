@@ -65,8 +65,7 @@ fxLayoutGap: elements gap
       <li *ngIf="appUser; else anonymsUser">
         <button class="user-name" mat-button [matMenuTriggerFor]="menu">{{appUser.name}}
           <mat-icon>arrow_drop_down</mat-icon>
-        </button>
-        
+        </button>        
         <mat-menu #menu="matMenu" xPosition="after">
           <button routerLink="products/new" mat-menu-item>Add Product</button>
           <button mat-menu-item>All Products</button>

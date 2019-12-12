@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { ShoppingCartService } from './shopping-cart.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from './auth.service';
-import { Order } from '../models/order';
+
 import { Router } from '@angular/router';
 
 @Injectable({
