@@ -27,12 +27,6 @@ export class AuthService {
     else if(type == 'fauth'){             
       let provider = new firebase.auth.FacebookAuthProvider();
       user = await this.afAuth.auth.signInWithPopup(provider) ;
-          // .then(res => {
-          //   resolve(res);
-          // }, err => {
-          //   console.log(err);
-          //   reject(err);
-          // }) ;
       
     }    
     return user;

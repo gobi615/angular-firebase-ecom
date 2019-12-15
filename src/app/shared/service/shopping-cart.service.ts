@@ -19,7 +19,7 @@ export class ShoppingCartService {
   uCartId;
  
   constructor(private db : AngularFireDatabase, private userService: UserService, private authService: AuthService) { 
-    console.log('service called');
+    
   }
 
   async getCart(){
@@ -35,7 +35,7 @@ export class ShoppingCartService {
         localStorage.removeItem("cartId");
         location.reload();                //reload the page
       }
-      console.log('shope cartttttt');
+    
       let shopKart = new ShoppingCart(cart.payload.val().items,cart.payload.key);
       // localStorage.setItem('kart', JSON.stringify(shopKart));
       // console.log('shopping cart : '+JSON.stringify(shopKart));
@@ -65,7 +65,6 @@ export class ShoppingCartService {
   }
 
   async getOrCreateCart(){
-
     // need to create logic like if he login his cart id is stored and get from db. If he is not logged in his anonyms cart is stored in local.
     let cartId = localStorage.getItem('cartId'); 
     console.log('cart: '+cartId);   
@@ -91,9 +90,7 @@ export class ShoppingCartService {
         this.userService.save(user,cartId);
       }         
     });
-  }
-  
- 
+  } 
 
   createCart(){
     return this.db.list('/shopping-cart').push({
